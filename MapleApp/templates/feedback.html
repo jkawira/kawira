@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Feedback</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/feedback.css' %}">
+      <link rel="icon" href="{% static 'images/books_library.png' %}" type="image/x-icon">
+
+
+</head>
+
+<body>
+<header>
+    <div class="logo">
+        <img src="{% static 'images/im1.jpg' %}" alt="Library Logo">
+        <h1 style="color: rgb(65, 35, 217);">MAPLEREADS!!</h1>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'book' %}">Book</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'feedback' %}">Feedback</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'registration' %}">Registration</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'studentlogin' %}">Student-Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'admin' %}">Admin-Login</a></li>
+                      <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<section>
+    <div class="feedback_img">
+        <div class="box3">
+            <h1>Feedback</h1>
+            <form name="feedback" action="{% url 'feedback' %}" method="post">
+                {% csrf_token %}
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" rows="5" placeholder="Write your feedback here..." required></textarea>
+                <button type="submit">Submit Feedback</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<script src="{% static 'js/script.js' %}"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>

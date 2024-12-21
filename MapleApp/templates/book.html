@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Books</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{% static 'images/books_library.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/books.css' %}">
+
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img src="{% static 'images/im1.jpg' %}" alt="Library Logo">
+        <h1 style="color: rgb(65, 35, 217);">MAPLEREADS!!</h1>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'book' %}">Book</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'feedback' %}">Feedback</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'registration' %}">Registration</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'studentlogin' %}">Student-Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'admin' %}">Admin-Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<section>
+    <h1 style="text-align: center; font-size: 24px; color: #333;">Available Books</h1>
+    <form method="get" action="{% url 'book' %}" class="books-container form-inline">
+        <input type="text" name="q" placeholder="Search for books..." value="{{ request.GET.q }}" class="form-control">
+        <select name="category" class="form-control">
+            <option value="">All Categories</option>
+            {% for category in categories %}
+            <option value="{{ category.id }}" {% if category.id|stringformat:"s" == selected_category %}selected{% endif %}>{{ category.name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" class="btn btn-success">Search</button>
+    </form>
+    <div class="books-container">
+        {% for book in page_obj %}
+        <div class="book-card">
+            <img src="{{ book.image.url }}" alt="{{ book.title }}">
+            <h3>{{ book.title }}</h3>
+            <p>Author: {{ book.author }}</p>
+            <div class="btn-container">
+                {% if book.borrowed %}
+                    {% if book.borrowed_by == request.user %}
+                        <a href="{% url 'return_book' book.id %}" class="btn return">Return</a>
+                    {% else %}
+                        <button class="btn btn-secondary" disabled>Borrowed by {{ book.borrowed_by.username }}</button>
+                    {% endif %}
+                {% else %}
+                    <a href="{% url 'borrow_book' book.id %}" class="btn btn-primary">Borrow</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>

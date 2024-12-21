@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Borrowed Books - Admin</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" href="{% static 'images/books_library.png' %}" type="image/x-icon">
+
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img src="{% static 'images/im1.jpg' %}" alt="Library Logo">
+        <h1 style="color: rgb(65, 35, 217);">MAPLEREADS!!</h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'book' %}">Book</a></li>
+            <li><a href="{% url 'feedback' %}">Feedback</a></li>
+            <li><a href="{% url 'registration' %}">Registration</a></li>
+            <li><a href="{% url 'studentlogin' %}">Student-Login</a></li>
+            <li><a href="{% url 'admin_borrowed_books' %}">Borrowed Books (Admin)</a></li>
+        </ul>
+    </nav>
+</header>
+<section>
+    <h2>Borrowed Books</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Borrowed By</th>
+                <th>Return</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+            <tr>
+                <td>{{ book.title }}</td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.borrowed_by.username }}</td>
+                <td><a href="{% url 'return_book' book.id %}" class="btn btn-success">Return</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Borrow Confirmation</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/return_conf.css' %}">
+    <link rel="icon" href="{% static 'images/books_library.png' %}" type="image/x-icon">
+
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <img src="{% static 'images/im1.jpg' %}" alt="Library Logo">
+        <h1 style="color: rgb(65, 35, 217);">MAPLEREADS!!</h1>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'book' %}">Book</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'feedback' %}">Feedback</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'registration' %}">Registration</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'studentlogin' %}">Student-Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'admin' %}">Admin-Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<section>
+    <h2>Borrow Confirmation</h2>
+    <p>You have successfully borrowed the book <strong>{{ book.title }}</strong> by <strong>{{ book.author }}</strong>.</p>
+    <p>Borrowed by: <strong>{{ book.borrowed_by.username }}</strong></p>
+    <a href="{% url 'book' %}" class="btn btn-primary">Back to Books</a>
+</section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>
+
