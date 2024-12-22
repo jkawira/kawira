@@ -7,11 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/feedback.css' %}">
-      <link rel="icon" href="{% static 'images/books_library.png' %}" type="image/x-icon">
-
-
+    <link rel="icon" href="{% static 'images/books_library.png' %}" type="image/x-icon">
 </head>
-
 <body>
 <header>
     <div class="logo">
@@ -28,7 +25,7 @@
                     <li class="nav-item"><a class="nav-link" href="{% url 'registration' %}">Registration</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'studentlogin' %}">Student-Login</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'admin' %}">Admin-Login</a></li>
-                      <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
                 </ul>
             </div>
         </div>
@@ -40,17 +37,16 @@
             <h1>Feedback</h1>
             <form name="feedback" action="{% url 'feedback' %}" method="post">
                 {% csrf_token %}
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Your Email" required>
-                <textarea name="message" rows="5" placeholder="Write your feedback here..." required></textarea>
+                <input type="text" name="name" placeholder="Your Name" required><br><br>
+                <input type="email" name="email" placeholder="Your Email" required><br><br>
+                <textarea name="feedback" rows="5" placeholder="Write your feedback here..." required></textarea><br><br>
                 <button type="submit">Submit Feedback</button>
             </form>
         </div>
     </div>
 </section>
-
 <script src="{% static 'js/script.js' %}"></script>
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src=" https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src=" https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </body>
 </html>
